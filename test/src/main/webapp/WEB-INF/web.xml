@@ -19,4 +19,14 @@
     <servlet-name>ViewListServlet</servlet-name>
     <url-pattern>/list</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewWriteServlet</display-name>
+    <servlet-name>ViewWriteServlet</servlet-name>
+    <servlet-class>com.ktds.jgu.book.web.ViewWriteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewWriteServlet</servlet-name>
+    <url-pattern>/write</url-pattern>
+  </servlet-mapping>
 </web-app>

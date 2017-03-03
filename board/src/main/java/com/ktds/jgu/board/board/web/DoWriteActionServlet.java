@@ -34,9 +34,9 @@ public class DoWriteActionServlet extends HttpServlet {
 		
 		// 작성자의 ip 얻어 오기
 		String ip = request.getRemoteAddr();
-//		writer = writer + "(" + ip + ")";
+		writer = writer + "(" + ip + ")";
 		HttpSession session = request.getSession();
-		// session container 에서 내것만 쏙 빼온것.
+//		session container 에서 내것만 쏙 빼온것.
 		UsersVO user = (UsersVO) session.getAttribute("_USER_");
 		
 		writer = user.getUserName() + "(" + request.getRemoteAddr() + ")";

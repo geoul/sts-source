@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.detail {
+	width: 709px;
+	margin-right: 3px;
+	display: inline-block;
+	
+	/*.grid, .login에 사방으로 경계선을 주겠다.*/
+	/*
+		border: 1px solid
+		border: 1px dotted
+		border: 1px dashed
+	*/
+	border: 1px solid #DDDDDD;
+}
+
+.detail > h1 {
+	text-align: center;
+}
+
+.detail > hr {
+	border: 1px dashed #DDD;
+	width: 589px;
+}
+
+.detail > .author, .detail > p, .detail > .controls {
+	margin: 0 auto;
+	width: 579px;
+	padding-left: 10px;
+}
+
+.detail > p {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 10px;
+	background-color: #F4F4F4;
+}
+
+.detail > .controls {
+	padding-bottom: 10px;
+}

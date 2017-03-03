@@ -7,18 +7,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ktds.jgu.board.user.biz.UsersBiz;
 import com.ktds.jgu.board.user.biz.UsersBizImpl;
-import com.ktds.jgu.board.user.vo.UsersVO;
 
-public class ViewSignUpServlet extends HttpServlet {
+public class DoLogoutActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+      
 	private UsersBiz usersBiz;
 	
-    public ViewSignUpServlet() {
-    	usersBiz = new UsersBizImpl();
+    public DoLogoutActionServlet() {
+        usersBiz = new UsersBizImpl();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,21 +26,10 @@ public class ViewSignUpServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String usersIdString = request.getParameter("userId");
-//		String userId = "";
-//		String userPassword = "";
-//		
-//		UsersVO usersVO = usersBiz.getOneUser(userId, userPassword);
-//		
-//		String content = usersVO.getUserName();
-//		content = content.replaceAll("<br/>", "\n");
-//		usersVO.setContent(content);
-//		
-//		request.setAttribute("user", usersVO);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/users/signUp.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/board/user/signIn");
 		dispatcher.forward(request, response);
-		
+		HttpSession session = request.getSession();
+		session.invalidate();
 	}
 
 }

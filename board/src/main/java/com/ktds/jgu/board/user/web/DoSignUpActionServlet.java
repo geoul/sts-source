@@ -25,27 +25,30 @@ public class DoSignUpActionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
 		String userPassword = request.getParameter("userPassword");
-		String joinDate = request.getParameter("joinDate");
+//		String joinDate = request.getParameter("joinDate");
 		
-		String ip = request.getRemoteAddr();
-		userName = userName + "(" + ip + ")";
+//		String ip = request.getRemoteAddr();
+//		userName = userName + "(" + ip + ")";
 		
+		System.out.println(userId);
 		System.out.println(userName);
 		System.out.println(userPassword);
-		System.out.println(joinDate);
+//		System.out.println(joinDate);
 		
 		UsersVO usersVO = new UsersVO();
+		usersVO.setUserId(userId);
 		usersVO.setUserName(userName);
 		usersVO.setUserPassword(userPassword);
-		usersVO.setJoinDate(joinDate);
+//		usersVO.setJoinDate(joinDate);
 		
 		if ( usersBiz.signUpUser(usersVO) ) {
-			response.sendRedirect("/user/login");
+			response.sendRedirect("/board/user/signIn");
 		}
 		else {
-			response.sendRedirect("/user/signUp");
+			response.sendRedirect("/board/user/signUp");
 		}
 		
 		usersBiz.signUpUser(usersVO);

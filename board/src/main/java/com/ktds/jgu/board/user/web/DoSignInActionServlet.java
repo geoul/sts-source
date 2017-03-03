@@ -35,23 +35,22 @@ public class DoSignInActionServlet extends HttpServlet {
 		user = userBiz.getOneUser(userId, userPassword);
 		
 		if ( user == null ) {
-			response.sendRedirect("/board/user/login");
+			response.sendRedirect("/board/user/signIn");
 		}
 		else {
 			// Session Container를 가져오는 것임.
-			HttpSession session = request.getSession(true);
-			session.invalidate();
+//			HttpSession session = request.getSession(true);
+//			session.invalidate();
 			// Session Container에 값을 집어넣는 것임.
 			// Session의 Key는 문장 끝은 언더바로 감싼다.(규칙)
-			session.setAttribute("_USER_", user);
-			
-			System.out.println("User ID : " + user.getUserId());
-			System.out.println("User Name : " + user.getUserName());
-			System.out.println("User Password : " + user.getUserPassword());
-			System.out.println("User JoinDate : " + user.getJoinDate());
+//			session.setAttribute("_USER_", user);
+//			
+//			System.out.println("User ID : " + user.getUserId());
+//			System.out.println("User Name : " + user.getUserName());
+//			System.out.println("User Password : " + user.getUserPassword());
+//			System.out.println("User JoinDate : " + user.getJoinDate());
 			response.sendRedirect("/board/list");
 		}
-		
 		
 	}
 

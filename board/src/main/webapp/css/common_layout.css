@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+* {
+	color: #333333;
+}
+/*여러개를 동시에 표현하려면 ,(콤마)로 구분한다.*/
+div, input, td, th, span, a, p, textarea, li, button, dt, dl, dd, ul, ol, body {
+	font-size: 9pt;
+}
+
+#wrapper {
+	width: 964px;
+	overflow: hidden;   /* 964px이 넘어가면 잘라버려라.*/
+	/* 0 auto를 하게 되면 위, 아래 마진은 0, 옆에 남아있는 마진을 반으로 갈라서 양쪽이 모두 똑같이 적용함. */
+	margin: 0 auto;
+}
+
+#nav {
+	width: 100%;
+	background-color: #55CC55;
+	/*padding을 전체적으로 10px 주는데 왼쪽은 최종 15px 이 된다.(padding과 중복됨.)*/
+	padding: 10px;
+	padding-left: 15px;
+	margin-bottom: 3px;
+	font-size: 9pt;
+}
+
+/* > : 자식 엘리먼트. nav의 자식 엘리먼트인 a 엘리먼트에만 적용된다.*/
+#nav > a {
+	color: #FFFF00;
+	font-weight: bold;
+	font-size: 11pt;
+}
+
+#content {
+	/*content에 들어가는 내용을 wrapper 크기에 딱 맞게 맞춰라.*/
+	width: 100%;
+}
+
+body {
+	margin: 0px;
+}
+
+table {
+	width: 100%;  /* 711px만큼 정확히 딱 쓰겠다. */
+	border-collapse: collapse;  /* table한테는 이것이 필수코드 이다.(경계선이 사라짐)*/
+}
+
+th {
+	text-align: center;
+	font-weight: bold;
+	background-color: powderblue;
+	padding: 6px;
+	font-size: 9pt;
+}
+
+td {
+	padding: 6px;
+	font-size: 9pt;
+}

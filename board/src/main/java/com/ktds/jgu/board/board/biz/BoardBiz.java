@@ -2,6 +2,7 @@ package com.ktds.jgu.board.board.biz;
 
 import java.util.List;
 
+import com.ktds.jgu.board.board.vo.BoardSearchVO;
 import com.ktds.jgu.board.board.vo.BoardVO;
 
 /**
@@ -11,7 +12,7 @@ public interface BoardBiz {
 
     public boolean writeArticle(BoardVO boardVO);   // insertArticle()을 호출
 
-    public List<BoardVO> getAllArticles();   // selectArticles()를 호츨
+    public List<BoardVO> getAllArticles(BoardSearchVO boardSearchVO);   // selectArticles()를 호츨
 
     public BoardVO getOneArticles(int boardId);   // selectOne()을 호출
 

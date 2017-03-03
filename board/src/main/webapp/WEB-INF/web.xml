@@ -57,7 +57,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoWriteActionServlet</servlet-name>
-    <url-pattern>/doWrite</url-pattern>
+    <url-pattern>/board/doWrite</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -96,7 +96,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ViewSignUpServlet</servlet-name>
-    <url-pattern>/signUpServlet</url-pattern>
+    <url-pattern>/user/signUp</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -106,7 +106,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoSignUpActionServlet</servlet-name>
-    <url-pattern>/doSignUp</url-pattern>
+    <url-pattern>/user/doSignUp</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -116,16 +116,26 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoSignInActionServlet</servlet-name>
-    <url-pattern>/signIn</url-pattern>
+    <url-pattern>/user/doSignIn</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>IndexServlet</display-name>
-    <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>com.ktds.jgu.board.IndexServlet</servlet-class>
+    <display-name>ViewSignInServlet</display-name>
+    <servlet-name>ViewSignInServlet</servlet-name>
+    <servlet-class>com.ktds.jgu.board.user.web.ViewSignInServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>IndexServlet</servlet-name>
-    <url-pattern>/</url-pattern>
+    <servlet-name>ViewSignInServlet</servlet-name>
+    <url-pattern>/user/signIn</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoLogoutActionServlet</display-name>
+    <servlet-name>DoLogoutActionServlet</servlet-name>
+    <servlet-class>com.ktds.jgu.board.user.web.DoLogoutActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoLogoutActionServlet</servlet-name>
+    <url-pattern>/user/doLogout</url-pattern>
   </servlet-mapping>
 </web-app>

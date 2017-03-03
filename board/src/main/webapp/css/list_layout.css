@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+.grid, .login {
+	/*.grid, .login에 사방으로 경계선을 주겠다.*/
+	/*
+		border: 1px solid
+		border: 1px dotted
+		border: 1px dashed
+	*/
+	border: 1px;
+	
+}
+
+.grid {
+	width: 709px;
+	margin-right: 3px;
+	display: inline-block;
+}
+
+.login {
+	vertical-align: top;   /*수직 정렬*/
+	width: 248px;
+	display: inline-block;
+}

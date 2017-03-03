@@ -46,8 +46,7 @@ public class ViewModifyServlet extends HttpServlet {
 		
 		request.setAttribute("board", boardVO);
 		
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/board/modify.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/board/modify.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/board/modify.jsp");
 		dispatcher.forward(request, response);
 	}
 

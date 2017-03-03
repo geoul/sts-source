@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+* {
+	color: #333333;
+}
+
+th {
+	text-align: center;
+	font-weight: bold;
+	background-color: powderblue;
+}

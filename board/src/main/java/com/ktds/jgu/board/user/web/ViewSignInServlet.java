@@ -12,13 +12,13 @@ import com.ktds.jgu.board.user.biz.UsersBiz;
 import com.ktds.jgu.board.user.biz.UsersBizImpl;
 import com.ktds.jgu.board.user.vo.UsersVO;
 
-public class ViewSignUpServlet extends HttpServlet {
+public class ViewSignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+      
 	private UsersBiz usersBiz;
 	
-    public ViewSignUpServlet() {
-    	usersBiz = new UsersBizImpl();
+    public ViewSignInServlet() {
+        usersBiz = new UsersBizImpl();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,21 +26,20 @@ public class ViewSignUpServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String usersIdString = request.getParameter("userId");
-//		String userId = "";
-//		String userPassword = "";
-//		
-//		UsersVO usersVO = usersBiz.getOneUser(userId, userPassword);
-//		
+		String usersIdString = request.getParameter("userId");
+		String userId = "";
+		String userPassword = "";
+		
+		UsersVO usersVO = usersBiz.getOneUser(userId, userPassword);
+		
 //		String content = usersVO.getUserName();
 //		content = content.replaceAll("<br/>", "\n");
 //		usersVO.setContent(content);
-//		
-//		request.setAttribute("user", usersVO);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/users/signUp.jsp");
+		request.setAttribute("user", usersVO);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/users/signIn.jsp");
 		dispatcher.forward(request, response);
-		
 	}
 
 }

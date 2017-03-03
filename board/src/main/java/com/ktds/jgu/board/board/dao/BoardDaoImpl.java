@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ktds.jgu.board.board.vo.BoardSearchVO;
 import com.ktds.jgu.board.board.vo.BoardVO;
 import com.ktds.jgu.board.user.vo.UsersVO;
 import com.ktds.jgu.dao.support.JDBCDaoSupport;
@@ -16,6 +17,38 @@ import com.ktds.jgu.dao.support.annotation.BindData;
  */
 public class BoardDaoImpl extends JDBCDaoSupport implements BoardDao {
 
+	@Override
+	public int getAllArticlesCount(BoardSearchVO boardSearchVO) {
+		return update(new QueryHandler() {
+			
+			@Override
+			public String preparedQuery() {
+				StringBuffer query = new StringBuffer();
+				
+				query.append(" SELECT 	COUNT(B.BOARD_ID) CNT ");
+				query.append(" FROM		BOARD B ");
+				query.append("			, USRS U ");
+				query.append(" WHERE	B.WRITER = U.USR_ID ");
+				
+				return query.toString();
+			}
+			
+			@Override
+			public void mappingParameters(PreparedStatement stmt) throws SQLException {
+				
+			}
+			
+			@Override
+			public Object getData(ResultSet rs) {
+				try {
+					return rs.getInt("CNT");
+				} catch (SQLException e) {
+					return 0;
+				}
+			}
+		});
+	}
+	
     @Override
     public BoardVO selectOneArticles(int boardId) {
         return (BoardVO) selectOne(new QueryHandler() {
@@ -27,7 +60,7 @@ public class BoardDaoImpl extends JDBCDaoSupport implements BoardDao {
                 query.append("           , B.WRITER ");
                 query.append("           , B.LIKE_COUNT ");
                 query.append("           , B.WRITE_DATE ");
-                query.append("			, B. IP ");
+                query.append("			, B.IP ");
                 query.append("			, U.USR_ID ");
                 query.append("			, U.USR_NM ");
                 query.append("			, U.JOIN_DT ");
@@ -58,7 +91,7 @@ public class BoardDaoImpl extends JDBCDaoSupport implements BoardDao {
             @Override
             public String preparedQuery() {
                 StringBuffer query = new StringBuffer();
-                query.append(" INSERT   INTO BOARD ( ");
+                query.append(" INSERT INTO 	BOARD ( ");
                 query.append("                          BOARD_ID ");
                 query.append("                          , SUBJECT ");
                 query.append("                          , CONTENT ");
@@ -87,37 +120,54 @@ public class BoardDaoImpl extends JDBCDaoSupport implements BoardDao {
 
             @Override
             public Object getData(ResultSet rs) {
-                return null;
+            	BoardVO boardVO = new BoardVO();
+                BindData.bindData(rs, boardVO);
+                return boardVO;
             }
         });
     }
 
     @SuppressWarnings("unchecked")
 	@Override
-    public List<BoardVO> selectAllArticles() {
+    public List<BoardVO> selectAllArticles(BoardSearchVO boardSearchVO) {
         return selectList(new QueryHandler() {
             @Override
             public String preparedQuery() {
+            	
                 StringBuffer query = new StringBuffer();
+                
+                query.append(" SELECT 	* ");
+                query.append(" FROM 	( ");
+                query.append("			SELECT	ROWNUM RNUM ");
+                query.append("					, RST.* ");
+                query.append("			FROM	( ");
+                
                 query.append(" SELECT    B.BOARD_ID ");
                 query.append("           , B.SUBJECT ");
                 query.append("           , B.WRITER ");
                 query.append("           , B.LIKE_COUNT ");
                 query.append("           , B.WRITE_DATE ");
-                query.append("			, B. IP ");
+                query.append("			, B.IP ");
                 query.append("			, U.USR_ID ");
                 query.append("			, U.USR_NM ");
                 query.append("			, U.JOIN_DT ");
                 query.append(" FROM      BOARD B ");
                 query.append("			,USRS U ");
-                query.append("WHERE		B.WRITER = U.USR_ID ");
+                query.append(" WHERE		B.WRITER = U.USR_ID ");
                 query.append(" ORDER		BY BOARD_ID DESC ");
+                
+                query.append("					) RST "); // inline View 이름이 RST로 바뀜. RESULT
+                query.append(" 			WHERE	ROWNUM <= ? ");
+                query.append(" 			) ");
+                query.append("WHERE 	RNUM >= ? ");
+                
                 return query.toString();
             }
 
             @Override
             public void mappingParameters(PreparedStatement stmt) throws SQLException {
-            	
+            	stmt.setInt(1, boardSearchVO.getPager().getEndArticleNumber());
+                stmt.setInt(2, boardSearchVO.getPager().getStartArticleNumber());
             }
 
             @Override
