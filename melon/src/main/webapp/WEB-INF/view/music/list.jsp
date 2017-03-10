@@ -56,7 +56,9 @@
 	</form>
 	
 	<div id="mp3player">
-		<video controls="controls" preload="auto" buffered></video>
+		<video controls="controls">
+			<source src="" type="audio/mp3"></source>
+		</video>
 	</div>
 	
 </body>
