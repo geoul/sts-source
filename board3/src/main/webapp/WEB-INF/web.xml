@@ -11,12 +11,52 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>ViewUserListServlet</display-name>
-    <servlet-name>ViewUserListServlet</servlet-name>
-    <servlet-class>com.board3.user.web.ViewUserListServlet</servlet-class>
+    <display-name>ViewSignInServlet</display-name>
+    <servlet-name>ViewSignInServlet</servlet-name>
+    <servlet-class>com.board3.user.web.ViewSignInServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ViewUserListServlet</servlet-name>
-    <url-pattern>/user/list</url-pattern>
+    <servlet-name>ViewSignInServlet</servlet-name>
+    <url-pattern>/user/signIn</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewSignUpServlet</display-name>
+    <servlet-name>ViewSignUpServlet</servlet-name>
+    <servlet-class>com.board3.user.web.ViewSignUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewSignUpServlet</servlet-name>
+    <url-pattern>/user/signUp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoSignInActionServlet</display-name>
+    <servlet-name>DoSignInActionServlet</servlet-name>
+    <servlet-class>com.board3.user.web.DoSignInActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoSignInActionServlet</servlet-name>
+    <url-pattern>/user/doSignIn</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoSignUpActionServlet</display-name>
+    <servlet-name>DoSignUpActionServlet</servlet-name>
+    <servlet-class>com.board3.user.web.DoSignUpActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoSignUpActionServlet</servlet-name>
+    <url-pattern>/user/doSignUp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoSignOutActionServlet</display-name>
+    <servlet-name>DoSignOutActionServlet</servlet-name>
+    <servlet-class>com.board3.user.web.DoSignOutActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoSignOutActionServlet</servlet-name>
+    <url-pattern>/user/signOut</url-pattern>
   </servlet-mapping>
 </web-app>

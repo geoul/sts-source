@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+
+* {
+	color: #333333;
+}
+
+div, input, td, th, span, a, p, textarea, li, button, dt, dl, dd, ul, ol, body {
+	font-size: 9pt;
+}
+
+#wrapper {
+	width: 964px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#nav {
+	width: 100%;
+	background-color: #55ca5f;
+	padding: 10px;
+	padding-left: 15px;
+	margin-bottom: 3px;
+	font-size: 9pt;
+}
+
+#nav > a {
+	 color: #FFFF00;
+	 font-weight: bold;
+	 font-size: 11pt;
+}
+
+#content {
+	width: 100%;
+}
+
+body {
+	margin: 0px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th {
+	text-align: center;
+	font-weight: bold;
+	background-color: powderblue;
+	
+	padding: 6px;
+	font-size: 9pt;
+}
+
+td {
+	padding: 6px;
+	font-size: 9pt;
+}
+
+.login form {
+	margin-bottom: 3px;
+}
+
+.login .userInfo {
+	display:inline-block;
+	width: 170px;
+	height: 81px;
+}
+
+.login .btn {
+	display:inline-block;
+	vertical-align: top;
+	height: 81px;
+}
+
+.login .btn > input[type=submit] {
+	width: 68px;
+	radius: 15px;
+	-webkit-appearance: none;
+    height: 81px;
+    background-color:#FFF;
+    color:#AAA;
+    font-weight:bold;
+    border: solid #DDD 1px;
+}
+
+.login input[type=text][name=userId], .login input[type=password][name=userPassword] {
+	width:146px;
+	padding: 10px;
+	margin-bottom: 3px;
+}
+
+.login .userHelp {
+	text-align: right;
+}
