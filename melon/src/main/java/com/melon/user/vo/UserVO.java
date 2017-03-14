@@ -1,12 +1,36 @@
 package com.melon.user.vo;
 
+import com.melon.authorization.vo.AuthorizationVO;
+
 public class UserVO {
 
 	private String userId;
 	private String userPassword;
 	private String userName;
 	private int userPoint;
+	private String authorizationId;
 	
+	private AuthorizationVO authorizationVO;
+	
+	public AuthorizationVO getAuthorizationVO() {
+		if ( authorizationVO == null ) {
+			authorizationVO = new AuthorizationVO();
+		}
+		return authorizationVO;
+	}
+
+	public void setAuthorizationVO(AuthorizationVO authorizationVO) {
+		this.authorizationVO = authorizationVO;
+	}
+
+	public String getAuthorizationId() {
+		return authorizationId;
+	}
+
+	public void setAuthorizationId(String authorizationId) {
+		this.authorizationId = authorizationId;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

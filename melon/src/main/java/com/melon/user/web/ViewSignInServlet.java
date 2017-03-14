@@ -33,11 +33,7 @@ public class ViewSignInServlet extends HttpServlet {
 		UserVO userVO = new UserVO();
 		userVO = userBiz.loginUser(userVO);
 		
-//		String content = usersVO.getUserName();
-//		content = content.replaceAll("<br/>", "\n");
-//		usersVO.setContent(content);
-		
-		request.setAttribute("user", userVO);
+		request.setAttribute("userVO", userVO);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/user/signIn.jsp");
 		dispatcher.forward(request, response);

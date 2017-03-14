@@ -43,7 +43,9 @@
 		<c:forEach items="${musicList}" var="music" varStatus="index">
 			<tr>
 				<td>${index.index + 1}</td>
-				<td>${music.title}</td>
+				<td>
+					<a href="/melon/music/detail?musicId=${music.musicId}">${music.title}</a>
+				</td>
 				<td>${music.albumVO.artistVO.member}</td>
 				<td>${music.albumVO.albumName}</td>
 				<td>${music.likeCount}</td>

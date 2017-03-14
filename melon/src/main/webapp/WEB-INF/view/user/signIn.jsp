@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form method="post" action="/melon/user/doSignIn">
+	<form method="post" action="/melon/music/list">
 		<input type="text" name="userId" placeholder="아이디를 입력하세요." /><br/>
 		<input type="text" name="userPassword" placeholder="비밀번호를 입력하세요." /><br/>
 		<input type="submit" value="SignIn!" />

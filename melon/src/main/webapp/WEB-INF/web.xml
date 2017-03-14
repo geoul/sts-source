@@ -104,16 +104,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ViewRegistServlet</display-name>
-    <servlet-name>ViewRegistServlet</servlet-name>
-    <servlet-class>com.melon.user.web.ViewRegistServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewRegistServlet</servlet-name>
-    <url-pattern>/user/regist</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ViewSignUpServlet</display-name>
     <servlet-name>ViewSignUpServlet</servlet-name>
     <servlet-class>com.melon.user.web.ViewSignUpServlet</servlet-class>
@@ -134,26 +124,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DoSignInActionServlet</display-name>
-    <servlet-name>DoSignInActionServlet</servlet-name>
-    <servlet-class>com.melon.user.web.DoSignInActionServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DoSignInActionServlet</servlet-name>
-    <url-pattern>/user/doSignIn</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DoSignUpActionServlet</display-name>
-    <servlet-name>DoSignUpActionServlet</servlet-name>
-    <servlet-class>com.melon.user.web.DoSignUpActionServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DoSignUpActionServlet</servlet-name>
-    <url-pattern>/user/doSignUp</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>DoCheckDuplicateUserIdServlet</display-name>
     <servlet-name>DoCheckDuplicateUserIdServlet</servlet-name>
     <servlet-class>com.melon.user.web.DoCheckDuplicateUserIdServlet</servlet-class>
@@ -162,4 +132,31 @@
     <servlet-name>DoCheckDuplicateUserIdServlet</servlet-name>
     <url-pattern>/user/checkDuplicate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewMusicDetailServlet</display-name>
+    <servlet-name>ViewMusicDetailServlet</servlet-name>
+    <servlet-class>com.melon.music.web.ViewMusicDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewMusicDetailServlet</servlet-name>
+    <url-pattern>/music/detail</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>LoginCheckFilter</display-name>
+    <filter-name>LoginCheckFilter</filter-name>
+    <filter-class>com.melon.common.web.LoginCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginCheckFilter</filter-name>
+    <url-pattern>/artist/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>LoginCheckFilter</filter-name>
+    <url-pattern>/album/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>LoginCheckFilter</filter-name>
+    <url-pattern>/music/*</url-pattern>
+  </filter-mapping>
 </web-app>

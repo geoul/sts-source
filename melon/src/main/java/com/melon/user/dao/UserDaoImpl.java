@@ -66,6 +66,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	// 로그인 시키는 것
 	@Override
 	public UserVO selectOneUser(UserVO userVO) {
 		
@@ -87,17 +88,25 @@ public class UserDaoImpl implements UserDao {
 			
 			StringBuffer query = new StringBuffer();
 			
-			query.append(" SELECT	USR_ID        ");
-			query.append(" 		, USR_PWD         ");
-			query.append(" 		, USR_NM          ");
-			query.append(" 		, USR_PNT         ");
-			query.append(" FROM	USR               ");
-			query.append(" WHERE	USR_ID = ?    ");
+			query.append(" SELECT	U.USR_ID        ");
+			query.append(" 			, U.USR_PWD         ");
+			query.append(" 			, U.USR_NM          ");
+			query.append(" 			, U.USR_PNT         ");
+			query.append(" 			, U.ATHRZTN_ID U_ATHRZTN_ID        ");
+			query.append(" 			, A.ATHRZTN_ID        ");
+			query.append(" 			, A.ATHRZTN_NM        ");
+			query.append(" 			, A.PRNT_ATHRZTN_ID        ");
+			query.append(" FROM		USR U              ");
+			query.append("			, ATHRZTN A		");
+			query.append(" WHERE	U.ATHRZTN_ID = A.ATHRZTN_ID    ");
+			query.append(" AND		USR_ID = ?    ");
 			query.append(" AND		USR_PWD = ?   ");
 					
 			stmt = conn.prepareStatement(query.toString());
 			stmt.setString(1, userVO.getUserId());
 			stmt.setString(2, userVO.getUserPassword());
+			
+			rs = stmt.executeQuery();
 			
 			UserVO user = null;
 			if ( rs.next() ) {
@@ -106,6 +115,10 @@ public class UserDaoImpl implements UserDao {
 				user.setUserPassword(rs.getString("USR_PWD"));
 				user.setUserName(rs.getString("USR_NM"));
 				user.setUserPoint(rs.getInt("USR_PNT"));
+				user.setAuthorizationId(rs.getString("U_ATHRZTN_ID"));
+				user.getAuthorizationVO().setAuthorizationId(rs.getString("ATHRZTN_ID"));
+				user.getAuthorizationVO().setAuthorizationName(rs.getString("ATHRZTN_NM"));
+				user.getAuthorizationVO().setParentAuthorizationId(rs.getString("PRNT_ATHRZTN_ID"));
 				
 				return user;
 			}
@@ -131,6 +144,7 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	// 포인트 주는 것
 	@Override
 	public int updatePoint(String userId, int point) {
 		

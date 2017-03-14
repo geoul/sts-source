@@ -34,15 +34,19 @@ public class ViewSignUpServlet extends HttpServlet {
 		
 		if ( userId == null || userId.length() == 0 ) {
 			response.sendRedirect("/melon/user/signUp?errorCode=0");
+			return;
 		}
 		if ( userPassword == null || userPassword.length() == 0 ) {
 			response.sendRedirect("/melon/user/signUp?errorCode=1");
+			return;
 		}
 		if ( userName == null || userName.length() == 0 ) {
 			response.sendRedirect("/melon/user/signUp?errorCode=2");
+			return;
 		}
 		if ( userService.isDuplicateUserId(userId) ) {
 			response.sendRedirect("/melon/user/signUp?errorCode=3");
+			return;
 		}
 		
 		UserVO newUserVO = new UserVO();
