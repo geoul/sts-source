@@ -19,4 +19,6 @@ public interface UserBiz {
 	
 	public boolean deleteOneUser(String userId);
 	
+//	public boolean managePoint(String userId, int point);
+	
 }

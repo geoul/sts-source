@@ -41,14 +41,22 @@ public class DoAuthorizationModifyActionServlet extends HttpServlet {
 		authorizationVO.setAuthorizationName(authorizationName);
 		authorizationVO.setParentAuthorizationId(parentAuthorizationId);
 		
+		// 수정한 결과를 isSuccess 변수에 담는다.
 		boolean isSuccess = authorizationService.updateAuthorization(authorizationVO);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("status", isSuccess ?  "success" : "fail" );
 		map.put("authorizationId", authorizationId);
 		
+		// map을 json으로 바꿈.
 		Gson gson = new Gson();
 		String json = gson.toJson(map);
+		/*
+		 * {
+		 * 		status: 'success'
+		 * 		authorizationId: 'at-201231232-13213123'
+		 * }
+		 */
 		
 		PrintWriter writer = response.getWriter();
 		writer.write(json);

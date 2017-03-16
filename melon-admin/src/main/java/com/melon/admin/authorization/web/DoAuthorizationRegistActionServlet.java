@@ -42,6 +42,8 @@ public class DoAuthorizationRegistActionServlet extends HttpServlet {
 		boolean isSuccess = authorizationService.registNewAuthorization(authorizationVO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// status와 내가 등록한 권한의 정보를 보내준다.
 		map.put("status", "success");
 		map.put("authorization", authorizationVO);
 		

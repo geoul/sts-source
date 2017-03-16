@@ -104,14 +104,14 @@ public class UserDaoImpl implements UserDao {
 			query.append(" 								, U.USR_NM                    ");
 			query.append(" 								, U.USR_PNT                   ");
 			query.append(" 								, U.ATHRZTN_ID U_ATHRZTN_ID   ");
-			query.append(" 								, A.ATHRZTN_ID A_ATHRZTN_ID   ");
-			query.append(" 								, A.ATHRZTN_NM                ");
-			query.append(" 								, A.PRTN_ATHRZTN_ID           ");
+			query.append(" 								, AT.ATHRZTN_ID AT_ATHRZTN_ID   ");
+			query.append(" 								, AT.ATHRZTN_NM                ");
+			query.append(" 								, AT.PRNT_ATHRZTN_ID           ");
 			query.append(" 						FROM 	USR U                         ");
-			query.append(" 								, ATHRZTN A                   ");
-			query.append(" 						WHERE	U.ATHRZTN_ID = A.ATHRZTN_ID   ");
+			query.append(" 								, ATHRZTN AT                   ");
+			query.append(" 						WHERE	U.ATHRZTN_ID = AT.ATHRZTN_ID   ");
 //			query.append(" 						AND		U.ATHRZTN_ID = ?              ");
-			query.append(" 						ORDER	BY ATHRZTN_ID DESC            ");
+			query.append(" 						ORDER	BY U_ATHRZTN_ID DESC            ");
 			query.append(" 					) A                                       ");
 			query.append(" 			WHERE ROWNUM <= ?                                 ");
 			query.append(" 		)                                                     ");
@@ -129,15 +129,16 @@ public class UserDaoImpl implements UserDao {
 			AuthorizationVO authorizationVO = null;
 			if (rs.next()) {
 				userVO = new UserVO();
+				userVO.setIndex(rs.getInt("RNUM"));
 				userVO.setUserId(rs.getString("USR_ID"));
 				userVO.setUserPassword(rs.getString("USR_PWD"));
 				userVO.setUserName(rs.getString("USR_NM"));
 				userVO.setUserPoint(rs.getInt("USR_PNT"));
 				
 				authorizationVO = userVO.getAuthorizationVO();
-				authorizationVO.setAuthorizationId(rs.getString("A_ATHRZTN_ID"));
+				authorizationVO.setAuthorizationId(rs.getString("AT_ATHRZTN_ID"));
 				authorizationVO.setAuthorizationName(rs.getString("ATHRZTN_NM"));
-				authorizationVO.setParentAuthorizationId(rs.getString("PRTN_ATHRZTN_ID"));
+				authorizationVO.setParentAuthorizationId(rs.getString("PRNT_ATHRZTN_ID"));
 				
 				userList.add(userVO);
 			}
@@ -192,7 +193,7 @@ public class UserDaoImpl implements UserDao {
 			query.append("			, U.ATHRZTN_ID U_ATHRZTN_ID ");
 			query.append(" 			, A.ATHRZTN_ID A_ATHRZTN_ID ");
 			query.append(" 			, A.ATHRZTN_NM        ");
-			query.append(" 			, A.PRTN_ATHRZTN_ID   ");
+			query.append(" 			, A.PRNT_ATHRZTN_ID   ");
 			query.append(" FROM		USR U                 ");
 			query.append(" 			, ATHRZTN A           ");
 			query.append(" WHERE	USR_ID = ?        ");
@@ -214,7 +215,7 @@ public class UserDaoImpl implements UserDao {
 				authorizationVO = userVO.getAuthorizationVO();
 				authorizationVO.setAuthorizationId(rs.getString("A_ATHRZTN_ID"));
 				authorizationVO.setAuthorizationName(rs.getString("ATHRZTN_NM"));
-				authorizationVO.setParentAuthorizationId(rs.getString("PRTN_ATHRZTN_ID"));
+				authorizationVO.setParentAuthorizationId(rs.getString("PRNT_ATHRZTN_ID"));
 				
 				return userVO;
 			}
@@ -406,5 +407,53 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 	}
+	
+	// 포인트 주는 것
+		@Override
+		public int updatePoint(String userId, int point) {
+			
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+			} 
+			catch (ClassNotFoundException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			}
+			
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:XE";
+			
+			try {
+				conn = DriverManager.getConnection(url, "MELON", "MELON");
+				
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE	USR                    ");
+				query.append(" SET		USR_PNT = USR_PNT + ?  ");
+				query.append(" WHERE	USR_ID = ?             ");
+				
+				stmt = conn.prepareStatement(query.toString());
+				stmt.setInt(1, point);
+				stmt.setString(2, userId);
+				
+				return stmt.executeUpdate();
+				
+			} 
+			catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			}
+			finally {
+				if ( stmt != null ) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {}
+				}
+				if ( conn != null ) {
+					try {
+						conn.close();
+					} catch (SQLException e) {}
+				}
+			}
+		}
 
 }

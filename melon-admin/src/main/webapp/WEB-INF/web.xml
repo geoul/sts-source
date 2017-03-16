@@ -51,6 +51,36 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ViewUserListServlet</display-name>
+    <servlet-name>ViewUserListServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.ViewUserListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewUserListServlet</servlet-name>
+    <url-pattern>/user/list</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewUserDetailServlet</display-name>
+    <servlet-name>ViewUserDetailServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.ViewUserDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewUserDetailServlet</servlet-name>
+    <url-pattern>/user/detail</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>DoUserModifyActionServlet</display-name>
+    <servlet-name>DoUserModifyActionServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.DoUserModifyActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoUserModifyActionServlet</servlet-name>
+    <url-pattern>/user/modify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>DoAuthorizationRegistActionServlet</display-name>
     <servlet-name>DoAuthorizationRegistActionServlet</servlet-name>
     <servlet-class>com.melon.admin.authorization.web.DoAuthorizationRegistActionServlet</servlet-class>
