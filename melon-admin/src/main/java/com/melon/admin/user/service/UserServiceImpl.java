@@ -82,5 +82,27 @@ public class UserServiceImpl implements UserService {
 		
 		return user;
 	}
+
+	@Override
+	public boolean updateAllAuthorization(String toAuth, String fromAuth) {
+		return userBiz.updateAllAuthorization(toAuth, fromAuth);
+	}
+
+	@Override
+	public boolean updateAllAuthorization(String[] userArray, String toAuth, String fromAuth) {
+		UserVO userVO = null;
+		for (String userId : userArray) {
+			userVO = new UserVO();
+			userVO.setUserId(userId);
+			userVO.setAuthorizationId(toAuth);
+			updateUser(userVO);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean updateAuthorization(String toAuth, String fromAuth) {
+		return false;
+	}
 	
 }

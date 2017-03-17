@@ -19,6 +19,8 @@ public interface UserBiz {
 	
 	public boolean deleteOneUser(String userId);
 	
+	public boolean updateAllAuthorization(String toAuth, String fromAuth);
+	
 //	public boolean managePoint(String userId, int point);
 	
 }

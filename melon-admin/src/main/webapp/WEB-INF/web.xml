@@ -69,7 +69,17 @@
     <servlet-name>ViewUserDetailServlet</servlet-name>
     <url-pattern>/user/detail</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
+    <description></description>
+    <display-name>DoUserAuthorizationModifyServlet</display-name>
+    <servlet-name>DoUserAuthorizationModifyServlet</servlet-name>
+    <servlet-class>com.melon.admin.user.web.DoUserAuthorizationModifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoUserAuthorizationModifyServlet</servlet-name>
+    <url-pattern>/user/doModify</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>DoUserModifyActionServlet</display-name>
     <servlet-name>DoUserModifyActionServlet</servlet-name>

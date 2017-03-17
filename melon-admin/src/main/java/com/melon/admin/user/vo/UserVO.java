@@ -8,7 +8,25 @@ public class UserVO {
 	private String userName;
 	private int userPoint;
 	private String authorizationId;
+	private String toAuth;
+	private String fromAuth;
 	
+	public String getToAuth() {
+		return toAuth;
+	}
+
+	public void setToAuth(String authorizationId) {
+		this.toAuth = authorizationId;
+	}
+
+	public String getFromAuth() {
+		return fromAuth;
+	}
+
+	public void setFromAuth(String authorizationId) {
+		this.fromAuth = authorizationId;
+	}
+
 	private AuthorizationVO authorizationVO;
 	
 	public int getIndex() {

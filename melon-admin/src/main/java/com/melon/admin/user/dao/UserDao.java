@@ -31,4 +31,6 @@ public interface UserDao {
 	
 	public int updatePoint(String userId, int point);
 	
+	public int updateAllAuthorization(String toAuth, String fromAuth);
+	
 }

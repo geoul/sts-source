@@ -23,4 +23,10 @@ public interface UserService {
 	
 	public boolean deleteOneUser(String userId);
 	
+	public boolean updateAuthorization(String toAuth, String fromAuth);
+	
+	public boolean updateAllAuthorization(String[] userArray, String toAuth, String fromAuth);
+	
+	public boolean updateAllAuthorization(String toAuth, String fromAuth);
+	
 }

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -438,6 +439,69 @@ public class UserDaoImpl implements UserDao {
 				
 				return stmt.executeUpdate();
 				
+			} 
+			catch (SQLException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			}
+			finally {
+				if ( stmt != null ) {
+					try {
+						stmt.close();
+					} catch (SQLException e) {}
+				}
+				if ( conn != null ) {
+					try {
+						conn.close();
+					} catch (SQLException e) {}
+				}
+			}
+		}
+
+		@Override
+		public int updateAllAuthorization(String toAuth, String fromAuth) {
+			
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+			} 
+			catch (ClassNotFoundException e) {
+				throw new RuntimeException(e.getMessage(), e);
+			}
+			
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:XE";
+			
+			try {
+				conn = DriverManager.getConnection(url, "MELON", "MELON");
+				
+				StringBuffer query = new StringBuffer();
+				
+				query.append(" UPDATE	USR             ");
+				query.append(" SET		ATHRZTN_ID = ?  ");
+				if ( fromAuth == null || fromAuth.length() == 0 ) {
+					query.append(" WHERE	ATHRZTN_ID IS NULL  ");
+				}
+				else {
+					query.append(" WHERE	ATHRZTN_ID = ?  ");
+				}
+				
+				stmt = conn.prepareStatement(query.toString());
+				if ( toAuth == null || toAuth.length() == 0 ) {
+					stmt.setNull(1, Types.VARCHAR);
+				}
+				else {
+					stmt.setString(1, toAuth);
+				}
+				
+				if ( fromAuth != null && fromAuth.length() > 0 ) {
+					stmt.setString(2, fromAuth);
+				}
+				else {
+					stmt.setNull(2, Types.VARCHAR);
+				}
+				
+				return stmt.executeUpdate();
 			} 
 			catch (SQLException e) {
 				throw new RuntimeException(e.getMessage(), e);
